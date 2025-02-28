@@ -145,6 +145,37 @@ export default function Home() {
 
   const firstRow = reviews.slice(0, reviews.length / 2);
   const secondRow = reviews.slice(reviews.length / 2);
+  const faqs = [
+    {
+      question: "Is there a free trail?",
+      answer: "No.",
+    },
+    {
+      question: "Is pavan gud boy?",
+      answer: "No,vvv bad boy.",
+    },
+    {
+      question: "Is charan gud boy?",
+      answer: "Yes.",
+    },
+    {
+      question: "Is sunil gud boy?",
+      answer: "Yes.",
+    },
+    {
+      question: "Is venky gud boy",
+      answer: "Yes.",
+    },
+    {
+      question: "Is sandeep gud boy?",
+      answer: "Yes.",
+    },
+  ];
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const toggleFAQ = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
 
   return (
     <div className="relative w-full flex flex-col items-center ">
@@ -478,11 +509,35 @@ export default function Home() {
           </form>
         </div>
       </div>
+      {/*FAQ'S*/}
+      <div className="flex w-[70%] flex-col items-center px-6 lg:px-16 py-10">
+        <h2 className="text-3xl md:text-6xl mb-3 font-[marcellus] font-medium bg-gradient-to-br from-white to-[#4d4d4d8a] bg-clip-text text-transparent">
+          FAQ's
+        </h2>
+
+        <div className="w-full max-w-2xl">
+          {faqs.map((faq, index) => (
+            <div key={index} className="mb-2">
+              <button
+                className="w-full text-left p-4 border-2 border-gray-700 bg-[#9494941c] rounded-lg transition duration-300 hover:bg-[#222b1f52] "
+                onClick={() => toggleFAQ(index)}
+              >
+                <p className="bg-gradient-to-br from-white to-[#4d4d4d8a] bg-clip-text text-transparent">
+                  {index + 1}. {faq.question}
+                </p>
+              </button>
+              {openIndex === index && (
+                <div className="p-4 bg-green-100 bg-opacity-20 text-white rounded-lg mt-1">
+                  {faq.answer}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
 
       {/* Footer */}
       <footer className="relative rounded-t-[70px] border-t-2 w-full text-white py-10 px-8 md:px-16 lg:px-24">
-        <div className="flex w-10 h-10 lg:w-20 lg:h-20 right-5 lg:-right-24 -rotate-45 lg:top-24 border-2 absolute opacity-45 border-purple-800" />
-        <div className="flex w-10 h-10 lg:w-20 lg:h-20 left-1 lg:-left-10 -rotate-45 bottom-28 border-2 absolute opacity-45 border-blue-800" />
         <div className="max-w-7xl mx-auto flex justify-between gap-8">
           {/* Brand Section */}
           <div>
