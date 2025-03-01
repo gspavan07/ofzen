@@ -105,74 +105,74 @@ export default function Home() {
     // Handle form submission logic
   };
 
-  const reviews = [
-    {
-      name: "Jack",
-      username: "@jack",
-      body: "I've never seen anything like this before. It's amazing. I love it.",
-      img: "https://avatar.vercel.sh/jack",
-    },
-    {
-      name: "Jill",
-      username: "@jill",
-      body: "I don't know what to say. I'm speechless. This is amazing.",
-      img: "https://avatar.vercel.sh/jill",
-    },
-    {
-      name: "John",
-      username: "@john",
-      body: "I'm at a loss for words. This is amazing. I love it.",
-      img: "https://avatar.vercel.sh/john",
-    },
-    {
-      name: "Jane",
-      username: "@jane",
-      body: "I'm at a loss for words. This is amazing. I love it.",
-      img: "https://avatar.vercel.sh/jane",
-    },
-    {
-      name: "Jenny",
-      username: "@jenny",
-      body: "I'm at a loss for words. This is amazing. I love it.",
-      img: "https://avatar.vercel.sh/jenny",
-    },
-    {
-      name: "James",
-      username: "@james",
-      body: "I'm at a loss for words. This is amazing. I love it.",
-      img: "https://avatar.vercel.sh/james",
-    },
-  ];
+  // const reviews = [
+  //   {
+  //     name: "Jack",
+  //     username: "@jack",
+  //     body: "I've never seen anything like this before. It's amazing. I love it.",
+  //     img: "https://avatar.vercel.sh/jack",
+  //   },
+  //   {
+  //     name: "Jill",
+  //     username: "@jill",
+  //     body: "I don't know what to say. I'm speechless. This is amazing.",
+  //     img: "https://avatar.vercel.sh/jill",
+  //   },
+  //   {
+  //     name: "John",
+  //     username: "@john",
+  //     body: "I'm at a loss for words. This is amazing. I love it.",
+  //     img: "https://avatar.vercel.sh/john",
+  //   },
+  //   {
+  //     name: "Jane",
+  //     username: "@jane",
+  //     body: "I'm at a loss for words. This is amazing. I love it.",
+  //     img: "https://avatar.vercel.sh/jane",
+  //   },
+  //   {
+  //     name: "Jenny",
+  //     username: "@jenny",
+  //     body: "I'm at a loss for words. This is amazing. I love it.",
+  //     img: "https://avatar.vercel.sh/jenny",
+  //   },
+  //   {
+  //     name: "James",
+  //     username: "@james",
+  //     body: "I'm at a loss for words. This is amazing. I love it.",
+  //     img: "https://avatar.vercel.sh/james",
+  //   },
+  // ];
 
-  const faqs = [
-    {
-      question: "Is there a free trail?",
-      answer: "No.",
-    },
-    {
-      question: "Is pavan gud boy?",
-      answer: "No,vvv bad boy.",
-    },
-    {
-      question: "Is charan gud boy?",
-      answer: "Yes.",
-    },
-    {
-      question: "Is sunil gud boy?",
-      answer: "Yes.",
-    },
-    {
-      question: "Is venky gud boy",
-      answer: "Yes.",
-    },
-    {
-      question: "Is sandeep gud boy?",
-      answer: "Yes.",
-    },
-  ];
+  // const faqs = [
+  //   {
+  //     question: "Is there a free trail?",
+  //     answer: "No.",
+  //   },
+  //   {
+  //     question: "Is pavan gud boy?",
+  //     answer: "No,vvv bad boy.",
+  //   },
+  //   {
+  //     question: "Is charan gud boy?",
+  //     answer: "Yes.",
+  //   },
+  //   {
+  //     question: "Is sunil gud boy?",
+  //     answer: "Yes.",
+  //   },
+  //   {
+  //     question: "Is venky gud boy",
+  //     answer: "Yes.",
+  //   },
+  //   {
+  //     question: "Is sandeep gud boy?",
+  //     answer: "Yes.",
+  //   },
+  // ];
 
-  const firstRow = reviews.slice(0, reviews.length / 2);
-  const secondRow = reviews.slice(reviews.length / 2);
+  // const firstRow = reviews.slice(0, reviews.length / 2);
+  // const secondRow = reviews.slice(reviews.length / 2);
   const [openIndex, setOpenIndex] = useState(null);
 
   const toggleFAQ = (index) => {
@@ -197,7 +197,7 @@ export default function Home() {
       <img
         src="/herotext.svg"
         alt=""
-        className="absolute w-[16%] min-w-40 drop-shadow-2xl top-8 lg:top-20 right-1 lg:right-20 "
+        className="absolute w-[16%] min-w-40 drop-shadow-2xl top-8 lg:top-20 right-1 lg:right-20 hidden lg:block"
       />
       {/* Navbar component */}
       <Navbar />
@@ -513,7 +513,7 @@ export default function Home() {
       </div>
 
       {/* Testimonials */}
-      <div className="relative flex w-full pb-10 flex-col items-center justify-center overflow-hidden">
+      {/* <div className="relative flex w-full pb-10 flex-col items-center justify-center overflow-hidden">
         <Marquee pauseOnHover className="[--duration:20s]">
           {firstRow.map((review) => (
             <ReviewCard key={review.username} {...review} />
@@ -526,9 +526,9 @@ export default function Home() {
         </Marquee>
         <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
         <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
-      </div>
+      </div> */}
       {/*FAQ'S*/}
-      <div className="flex w-[70%] flex-col items-center px-6 lg:px-16 pb-10">
+      {/* <div className="flex w-[70%] flex-col items-center px-6 lg:px-16 pb-10">
         <h2 className="text-3xl md:text-6xl mb-3 font-[marcellus] font-medium bg-gradient-to-br from-white to-[#4d4d4d8a] bg-clip-text text-transparent">
           FAQ's
         </h2>
@@ -552,7 +552,7 @@ export default function Home() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
 
       {/* Footer */}
       <footer className="relative overflow-hidden rounded-t-[70px] border-t-2 w-full text-white py-10 px-8 md:px-16 lg:px-24">

@@ -1,7 +1,10 @@
 import React from "react";
 import Link from "next/link";
-
+import { FiMenu, FiX } from "react-icons/fi";
+import { useState } from "react"; // Import icons
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div
       id="top"
@@ -49,6 +52,69 @@ const Navbar = () => {
         >
           Contact us
         </Link>
+      </div>
+
+      {/* Mobile Menu Icon (Click to Toggle) */}
+      <div
+        className="lg:hidden ml-auto cursor-pointer z-40 "
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        {isOpen ? (
+          <FiX size={28} className=" text-white block fixed top-6 right-2" />
+        ) : (
+          <FiMenu size={28} className=" text-white block fixed top-5 right-2" />
+        )}
+      </div>
+
+      {/* Mobile Menu */}
+      <div
+        className={`fixed top-4 right-1 w-1/2 bg-[#1d4d3d] text-white p-6 shadow-md rounded-lg z-30 ${isOpen ? "block" : "hidden"
+          } lg:hidden`}
+      >
+        <ul className="space-y-4 mt-3 text-center">
+          <li>
+            <Link
+              href="/"
+              className="block text-lg text-white py-2 hover:bg-[#276b3b] rounded "
+              onClick={() => setIsOpen(false)}>
+              Home</Link>
+          </li>
+          <li>
+            <Link
+              href="#expertises"
+              className="block text-lg text-white py-2 hover:bg-[#276b3b] rounded "
+              onClick={() => setIsOpen(false)}>
+              Expertises</Link>
+          </li>
+          <li>
+            <Link
+              href="#creations"
+              className="block text-lg text-white py-2 hover:bg-[#276b3b] rounded "
+              onClick={() => setIsOpen(false)}>
+              Creations</Link>
+          </li>
+          <li>
+            <Link
+              href="#squad"
+              className="block text-lg text-white py-2 hover:bg-[#276b3b] rounded "
+              onClick={() => setIsOpen(false)}>
+              Squad</Link>
+          </li>
+          <li>
+            <Link
+              href="#ourstory"
+              className="block text-lg text-white py-2 hover:bg-[#276b3b] rounded "
+              onClick={() => setIsOpen(false)}>
+              Our Story</Link>
+          </li>
+          <li>
+            <Link
+              href="#contactus"
+              className="block text-lg text-white py-2 hover:bg-[#276b3b] rounded "
+              onClick={() => setIsOpen(false)}>
+              Contact Us</Link>
+          </li>
+        </ul>
       </div>
     </div>
   );
