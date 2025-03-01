@@ -8,12 +8,12 @@ const Navbar = () => {
   return (
     <div
       id="top"
-      className="relative w-full flex justify-center items-center pt-6 px-6 sm:px-10 md:px-20"
+      className="relative w-full flex justify-center items-center pt-6 px-6 sm:px-10 md:px-20 "
     >
       <img
         src="/logo.svg"
         alt="OfZen logo"
-        className="absolute left-6 sm:left-10 lg:left-20 mt-10 lg:mt-0 w-36 "
+        className="absolute left-6 sm:left-10 lg:left-20 mt-10 lg:mt-0 w-36"
       />
       <div className=" hidden lg:flex flex-wrap justify-center items-center gap-3 sm:gap-5">
         <Link
@@ -60,9 +60,9 @@ const Navbar = () => {
         onClick={() => setIsOpen(!isOpen)}
       >
         {isOpen ? (
-          <FiX size={28} className=" text-white block fixed top-6 right-2" />
+          <FiX size={28} className=" text-white block fixed top-7 right-10" />
         ) : (
-          <FiMenu size={28} className=" text-white block fixed top-5 right-2" />
+          <FiMenu size={28} className=" text-white block fixed top-7 right-10" />
         )}
       </div>
 

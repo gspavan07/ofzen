@@ -212,9 +212,9 @@ export default function Home() {
         </h1>
       </div>
       {/* Window component */}
-      <div className="relative w-[90%] lg:w-[70%] flex justify-center">
+      <div className="relative w-[90%] lg:w-[70%] flex justify-center fade-in">
         <div className="absolute -top-5 md:-top-8 z-20 flex gap-2 left-5 items-center">
-          <span className="bg-red-600 w-2 md:w-4 h-2 md:h-4 rounded-full flex"></span>
+          <span className="bg-red-600 w-2 md:w-4 h-2 md:h-4 rounded-full flex "></span>
           <span className="bg-yellow-500 w-2 md:w-4 h-2 md:h-4 rounded-full flex"></span>
           <span className="bg-green-600 w-2 md:w-4 h-2 md:h-4 rounded-full flex"></span>
           <span className="bg-gradient-to-br text-xs font-[marcellus] font-bold md:text-base from-white to-[#818181c0] bg-clip-text text-transparent rounded-full flex">
@@ -223,7 +223,7 @@ export default function Home() {
         </div>
         <div className="absolute bottom-36 md:bottom-40 lg:bottom-28 xl:bottom-40 2xl:bottom-28 blur-2xl lg:blur-3xl rounded-full w-[80%] h-[100px] lg:h-[150px] 2xl:h-[300px] bg-[#206C47] z-0" />
         <Window
-          className=" w-full h-[250px] xl:h-[300px] 2xl:h-[400px] overflow-hidden rounded-[20px] border-0"
+          className=" w-full h-[250px] xl:h-[300px] 2xl:h-[400px] overflow-hidden rounded-[20px] border-0 fade-in"
           color={["#A07CFE", "#0099ff", "#0099ff"]}
         >
           <div className="absolute -top-40 lg:-top-96 -left-40 lg:-left-[450px] blur-[80px] lg:blur-[100px] rounded-full w-[500px] lg:w-[1000px] h-[400px] lg:h-[800px] bg-[#71ebd6] opacity-10" />
@@ -231,7 +231,7 @@ export default function Home() {
         <img
           src="/window.svg"
           alt=""
-          className="z-10 w-[50%] md:w-[40%] h-auto -bottom-8 sm:-bottom-14 lg:-bottom-20 xl:-bottom-28 right-5 md:right-5 absolute"
+          className="z-10 w-[50%] md:w-[40%] h-auto -bottom-8 sm:-bottom-14 lg:-bottom-20 xl:-bottom-28 right-5 md:right-5 absolute fade-in"
         />
       </div>
       {/* <div className="absolute -left-44 xl:-left-[700px] bottom-36 md:bottom-40 lg:bottom-28 xl:bottom-40 2xl:bottom-28 blur-2xl lg:blur-3xl rounded-full w-[70%] h-[50%] bg-[#206C47] opacity-15 z-0" /> */}
@@ -252,7 +252,7 @@ export default function Home() {
               key={index}
             >
               <motion.div
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.09 }}
                 className="flex flex-col h-full items-center"
               >
                 <div
@@ -299,7 +299,7 @@ export default function Home() {
                   index={index}
                   className={`rounded-2xl bg-[#ffffff10] p-3 border-0 w-full h-full transition-all duration-300 `}
                 >
-                  <div className="p-2 flex flex-col justify-center items-center md:p-10 text-center text-white">
+                  <div className="p-2 flex flex-col justify-center items-center md:p-10 text-center text-white ">
                     <img
                       src={`/img/${creation.img}.png`}
                       alt={creation.title}
