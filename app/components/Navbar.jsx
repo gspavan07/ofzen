@@ -3,7 +3,10 @@ import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <div className="relative w-full flex justify-center items-center pt-6 px-6 sm:px-10 md:px-20">
+    <div
+      id="top"
+      className="relative w-full flex justify-center items-center pt-6 px-6 sm:px-10 md:px-20"
+    >
       <img
         src="/logo.svg"
         alt="OfZen logo"
@@ -17,19 +20,31 @@ const Navbar = () => {
           Home
         </Link>
         <Link
-          href="/"
+          href="#expertises"
           className="rounded-full border-2 border-white/10 hover:border-white/25 text-base sm:text-lg text-transparent bg-clip-text bg-gradient-to-t to-white via-white from-[#4d4d4d8a] font-[marcellus] px-4 sm:px-6 py-2"
         >
           Expertises
         </Link>
         <Link
-          href="/"
+          href="#creations"
           className="rounded-full border-2 border-white/10 hover:border-white/25 text-base sm:text-lg text-transparent bg-clip-text bg-gradient-to-t to-white via-white from-[#4d4d4d8a] font-[marcellus] px-4 sm:px-6 py-2"
         >
-          About us
+          Creations
         </Link>
         <Link
-          href="/"
+          href="#squad"
+          className="rounded-full border-2 border-white/10 hover:border-white/25 text-base sm:text-lg text-transparent bg-clip-text bg-gradient-to-t to-white via-white from-[#4d4d4d8a] font-[marcellus] px-4 sm:px-6 py-2"
+        >
+          Squad
+        </Link>
+        <Link
+          href="#ourstory"
+          className="rounded-full border-2 border-white/10 hover:border-white/25 text-base sm:text-lg text-transparent bg-clip-text bg-gradient-to-t to-white via-white from-[#4d4d4d8a] font-[marcellus] px-4 sm:px-6 py-2"
+        >
+          Our Story
+        </Link>
+        <Link
+          href="#contactus"
           className="rounded-full border-2 border-white/10 hover:border-white/25 text-base sm:text-lg text-transparent bg-clip-text bg-gradient-to-t to-white via-white from-[#4d4d4d8a] font-[marcellus] px-4 sm:px-6 py-2"
         >
           Contact us

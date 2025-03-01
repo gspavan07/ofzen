@@ -10,6 +10,7 @@ import { ShinyBorderDash } from "./components/ui/ShinyBorderDash";
 import Card from "./components/ProfileCard";
 import { useState } from "react";
 import { Marquee, ReviewCard } from "./components/ui/Marquee";
+import { TypingAnimation } from "./components/ui/TypewriterEffect";
 import Link from "next/link";
 import { FaXTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa6";
 export default function Home() {
@@ -143,8 +144,6 @@ export default function Home() {
     },
   ];
 
-  const firstRow = reviews.slice(0, reviews.length / 2);
-  const secondRow = reviews.slice(reviews.length / 2);
   const faqs = [
     {
       question: "Is there a free trail?",
@@ -171,6 +170,9 @@ export default function Home() {
       answer: "Yes.",
     },
   ];
+
+  const firstRow = reviews.slice(0, reviews.length / 2);
+  const secondRow = reviews.slice(reviews.length / 2);
   const [openIndex, setOpenIndex] = useState(null);
 
   const toggleFAQ = (index) => {
@@ -235,9 +237,12 @@ export default function Home() {
       {/* <div className="absolute -left-44 xl:-left-[700px] bottom-36 md:bottom-40 lg:bottom-28 xl:bottom-40 2xl:bottom-28 blur-2xl lg:blur-3xl rounded-full w-[70%] h-[50%] bg-[#206C47] opacity-15 z-0" /> */}
 
       {/* Service cards */}
-      <div className="z-20 flex flex-col font-[marcellus] justify-center items-center mt-16 mx-10 w-[90%] md:w-[70%] md:mt-28">
+      <div
+        id="expertises"
+        className="z-20 flex flex-col font-[marcellus] justify-center items-center mt-16 mx-10 w-[90%] md:w-[70%] md:mt-28"
+      >
         <h1 className="text-3xl md:text-6xl font-[marcellus] font-medium bg-gradient-to-br from-white to-[#4d4d4d8a] bg-clip-text text-transparent">
-          Our Expertises
+          Expertises
         </h1>
         <div className="grid grid-cols-3  bg-gradient-to-br from-[#ffffff18] to-[#00000018] mt-5 gap-4 p-3 md:p-10 border-2 border-gray-400 rounded-2xl">
           {services.map((service, index) => (
@@ -271,7 +276,10 @@ export default function Home() {
       </div>
 
       {/* Creation cards */}
-      <div className="z-20 flex flex-col font-[marcellus] justify-center items-center mt-10 mx-10 w-[90%] md:w-[70%] md:mt-20">
+      <div
+        id="creations"
+        className="z-20 flex flex-col font-[marcellus] justify-center items-center mt-10 mx-10 w-[90%] md:w-[70%] md:mt-20"
+      >
         <h1 className="text-3xl md:text-6xl font-[marcellus] font-medium bg-gradient-to-br from-white to-[#4d4d4d8a] bg-clip-text text-transparent">
           Creations
         </h1>
@@ -312,7 +320,10 @@ export default function Home() {
       </div>
 
       {/* Meet our Squad */}
-      <div className="flex flex-col px-10 md:py-32 py-24 w-full lg:w-[70%] relative">
+      <div
+        id="squad"
+        className="flex flex-col px-10 md:py-32 py-24 w-full lg:w-[70%] relative"
+      >
         <div className="absolute -top-40 lg:-top-96 -left-80 lg:-left-[900px] blur-[80px] lg:blur-[100px] rounded-full w-[500px] lg:w-[1000px] h-[400px] lg:h-[800px] bg-[#71ebd6] opacity-10" />
         <img
           src="/light.svg"
@@ -408,7 +419,10 @@ export default function Home() {
       </div>
 
       {/* Our Story */}
-      <div className="md:w-[70%] pb-20 w-[90%] flex flex-col justify-center items-center">
+      <div
+        id="ourstory"
+        className="md:w-[70%] pb-20 w-[90%] flex flex-col justify-center items-center"
+      >
         <h2 className="text-3xl md:text-6xl mb-5 font-[marcellus] font-medium bg-gradient-to-br from-white to-[#4d4d4d8a] bg-clip-text text-transparent">
           Our Story
         </h2>
@@ -423,25 +437,13 @@ export default function Home() {
           a difference. <span className="text-white">🚀</span>
         </p>
       </div>
-
-      {/* Testimonials */}
-      <div className="relative flex w-full pb-10 flex-col items-center justify-center overflow-hidden">
-        <Marquee pauseOnHover className="[--duration:20s]">
-          {firstRow.map((review) => (
-            <ReviewCard key={review.username} {...review} />
-          ))}
-        </Marquee>
-        <Marquee reverse pauseOnHover className="[--duration:20s]">
-          {secondRow.map((review) => (
-            <ReviewCard key={review.username} {...review} />
-          ))}
-        </Marquee>
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
-      </div>
-
       {/* Let's have a virtual Coffee!  */}
-      <div className="flex flex-col items-center justify-center md:w-[70%] pb-10 w-[90%] text-white p-6">
+      <div
+        id="contactus"
+        className="relative flex overflow-x-clip flex-col items-center justify-center w-full pb-10 text-white p-6"
+      >
+        <div className="absolute -top-40 lg:-top-96 -right-72 lg:-right-[800px] blur-[80px] lg:blur-[100px] rounded-full w-[500px] lg:w-[1000px] h-[400px] lg:h-[800px] bg-[#71ebd6] opacity-10" />
+
         {/* Heading */}
         <h1 className="text-3xl md:text-6xl mb-3 font-[marcellus] font-medium bg-gradient-to-br from-white to-[#4d4d4d8a] bg-clip-text text-transparent">
           Let's Have a Virtual Coffee!
@@ -452,7 +454,7 @@ export default function Home() {
         </p>
 
         {/* Form  */}
-        <div className="flex flex-col p-8 lg:p-14 font-[marcellus] rounded-2xl w-full lg:w-1/2 border-2 border-gray-700 bg-gradient-to-br from-[#ffffff15] to-[#2929292c]">
+        <div className="flex flex-col p-8 lg:p-14 font-[marcellus] rounded-2xl w-[90%] lg:w-1/3 border-2 border-gray-700 bg-gradient-to-br from-[#ffffff15] to-[#2929292c]">
           <h2 className="text-2xl lg:text-3xl text-left mb-3">
             Let’s Connect!
           </h2>
@@ -509,8 +511,24 @@ export default function Home() {
           </form>
         </div>
       </div>
+
+      {/* Testimonials */}
+      <div className="relative flex w-full pb-10 flex-col items-center justify-center overflow-hidden">
+        <Marquee pauseOnHover className="[--duration:20s]">
+          {firstRow.map((review) => (
+            <ReviewCard key={review.username} {...review} />
+          ))}
+        </Marquee>
+        <Marquee reverse pauseOnHover className="[--duration:20s]">
+          {secondRow.map((review) => (
+            <ReviewCard key={review.username} {...review} />
+          ))}
+        </Marquee>
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
+      </div>
       {/*FAQ'S*/}
-      <div className="flex w-[70%] flex-col items-center px-6 lg:px-16 py-10">
+      <div className="flex w-[70%] flex-col items-center px-6 lg:px-16 pb-10">
         <h2 className="text-3xl md:text-6xl mb-3 font-[marcellus] font-medium bg-gradient-to-br from-white to-[#4d4d4d8a] bg-clip-text text-transparent">
           FAQ's
         </h2>
@@ -537,7 +555,10 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="relative rounded-t-[70px] border-t-2 w-full text-white py-10 px-8 md:px-16 lg:px-24">
+      <footer className="relative overflow-hidden rounded-t-[70px] border-t-2 w-full text-white py-10 px-8 md:px-16 lg:px-24">
+        <div className="flex w-20 opacity-25 h-20 top-10 -left-10 justify-center items-center blur-2xl absolute rounded-full bg-purple-800" />
+        <div className="flex w-20 opacity-25 h-20 right-20 -bottom-10 justify-center items-center blur-2xl absolute rounded-full bg-blue-800" />
+
         <div className="max-w-7xl mx-auto flex justify-between gap-8">
           {/* Brand Section */}
           <div>
@@ -554,28 +575,28 @@ export default function Home() {
           <div className="flex gap-8">
             {/* Company Links */}
             <div className="text-right flex-col flex">
-              <h3 className="text-gray-300 font-semibold ">COMPANY</h3>
+              <h3 className="text-gray-300 font-semibold">COMPANY</h3>
               <Link
-                href="/"
-                className="text-base sm:text-lg text-transparent bg-clip-text bg-gradient-to-t to-white via-white from-[#4d4d4d8a] font-[marcellus] py-1"
+                href="#top"
+                className="text-base sm:text-lg text-transparent bg-clip-text hover:underline bg-gradient-to-t to-white via-white from-[#4d4d4d8a] font-[marcellus] py-1"
               >
                 Home
               </Link>
               <Link
                 href="/"
-                className="text-base sm:text-lg text-transparent bg-clip-text bg-gradient-to-t to-white via-white from-[#4d4d4d8a] font-[marcellus] py-1"
+                className="text-base sm:text-lg text-transparent bg-clip-text hover:underline bg-gradient-to-t to-white via-white from-[#4d4d4d8a] font-[marcellus] py-1"
               >
                 Expertises
               </Link>
               <Link
                 href="/"
-                className="text-base sm:text-lg text-transparent bg-clip-text bg-gradient-to-t to-white via-white from-[#4d4d4d8a] font-[marcellus] py-1"
+                className="text-base sm:text-lg text-transparent bg-clip-text hover:underline bg-gradient-to-t to-white via-white from-[#4d4d4d8a] font-[marcellus] py-1"
               >
-                About us
+                Creations
               </Link>
               <Link
                 href="/"
-                className="text-base sm:text-lg text-transparent bg-clip-text bg-gradient-to-t to-white via-white from-[#4d4d4d8a] font-[marcellus] py-1"
+                className="text-base sm:text-lg text-transparent bg-clip-text hover:underline bg-gradient-to-t to-white via-white from-[#4d4d4d8a] font-[marcellus] py-1"
               >
                 Contact us
               </Link>
@@ -609,19 +630,19 @@ export default function Home() {
           </Link>
           <a
             href="#"
-            className="bg-[#9494941c] border-2 border-gray-700 p-3 rounded-lg hover:bg-[#9494943b]"
+            className="bg-[#9494941c] border-2 border-gray-700 p-3 rounded-lg hover:bg-[#9494943b] hover:text-black"
           >
             <FaXTwitter />
           </a>
           <a
             href="#"
-            className="bg-[#9494941c] border-2 border-gray-700 p-3 rounded-lg hover:bg-[#9494943b]"
+            className="bg-[#9494941c] border-2 border-gray-700 p-3 rounded-lg hover:bg-[#9494943b] hover:text-blue-500"
           >
             <FaLinkedinIn />
           </a>
           <a
             href="#"
-            className="bg-[#9494941c] border-2 border-gray-700 p-3 rounded-lg hover:bg-[#9494943b]"
+            className="bg-[#9494941c] border-2 border-gray-700 p-3 rounded-lg hover:bg-[#9494943b] hover:text-pink-700"
           >
             <FaInstagram />
           </a>
