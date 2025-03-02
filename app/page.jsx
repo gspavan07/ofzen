@@ -364,7 +364,7 @@ export default function Home() {
       {/* Meet our Squad */}
       <div
         id="squad"
-        className="flex scroll-mt-24 flex-col px-10 md:py-32 my-14 w-full lg:w-[70%] relative"
+        className="flex scroll-mt-16 flex-col px-10 md:py-32 my-14 w-full lg:w-[70%] relative"
       >
         <div className="absolute -top-40 lg:-top-96 -left-80 lg:-left-[900px] blur-[80px] lg:blur-[100px] rounded-full w-[500px] lg:w-[1000px] h-[400px] lg:h-[800px] bg-[#71ebd6] opacity-10" />
         <img
@@ -631,25 +631,31 @@ export default function Home() {
             <div className="text-right flex-col flex">
               <h3 className="text-gray-300 font-semibold">COMPANY</h3>
               <Link
-                href="#top"
+                href="#home"
                 className="text-base sm:text-lg text-transparent bg-clip-text hover:underline bg-gradient-to-t to-white via-white from-[#4d4d4d8a] font-[marcellus] py-1"
               >
                 Home
               </Link>
               <Link
-                href="/"
+                href="#expertises"
                 className="text-base sm:text-lg text-transparent bg-clip-text hover:underline bg-gradient-to-t to-white via-white from-[#4d4d4d8a] font-[marcellus] py-1"
               >
                 Expertises
               </Link>
               <Link
-                href="/"
+                href="#creations"
                 className="text-base sm:text-lg text-transparent bg-clip-text hover:underline bg-gradient-to-t to-white via-white from-[#4d4d4d8a] font-[marcellus] py-1"
               >
                 Creations
               </Link>
               <Link
-                href="/"
+                href="#squad"
+                className="text-base sm:text-lg text-transparent bg-clip-text hover:underline bg-gradient-to-t to-white via-white from-[#4d4d4d8a] font-[marcellus] py-1"
+              >
+                Meet our squad
+              </Link>
+              <Link
+                href="#contactus"
                 className="text-base sm:text-lg text-transparent bg-clip-text hover:underline bg-gradient-to-t to-white via-white from-[#4d4d4d8a] font-[marcellus] py-1"
               >
                 Contact us
@@ -685,19 +691,19 @@ export default function Home() {
           <br />{" "}
           <a
             href="#"
-            className="bg-[#9494941c] border-2 border-gray-700 p-3 rounded-lg hover:bg-[#9494943b] hover:text-black"
+            className="bg-[#9494941c] border-2 border-gray-700 p-3 rounded-lg hover:text-black"
           >
             <FaXTwitter />
           </a>
           <a
             href="#"
-            className="bg-[#9494941c] border-2 border-gray-700 p-3 rounded-lg hover:bg-[#9494943b] hover:text-blue-500"
+            className="bg-[#9494941c] border-2 border-gray-700 p-3 rounded-lg hover:text-blue-500"
           >
             <FaLinkedinIn />
           </a>
           <a
             href="#"
-            className="bg-[#9494941c] border-2 border-gray-700 p-3 rounded-lg hover:bg-[#9494943b] hover:text-pink-700"
+            className="bg-[#9494941c] border-2 border-gray-700 p-3 rounded-lg hover:text-pink-700"
           >
             <FaInstagram />
           </a>
