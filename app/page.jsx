@@ -120,6 +120,12 @@ export default function Home() {
       if (response.status === 200) {
         setIsSubmitted(true);
         setLoading(false);
+        setFormData({
+          firstname: "",
+          lastname: "",
+          email: "",
+          message: "",
+        });
         setTimeout(() => setIsSubmitted(false), 3000);
       } else {
         setErr(true);
