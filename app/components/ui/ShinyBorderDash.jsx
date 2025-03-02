@@ -17,7 +17,7 @@ export function ShinyBorderDash({ color, className, children }) {
             color instanceof Array ? color.join(",") : color
           },transparent)`,
         }}
-        className={`before:absolute before:inset-0 before:size-full before:rounded-tl-[70px] opacity-70 before:rounded-br-[70px] lg:before:rounded-tl-[100px] lg:before:rounded-br-[100px] before:p-[--border-width] before:content-[""] before:![-webkit-mask-composite:xor] before:![mask-composite:exclude] before:[background-image:--background-radial-gradient] before:[background-size:300%_300%] before:[mask:--mask-linear-gradient] motion-safe:before:animate-shine`}
+        className={`before:bg-shine-size pointer-events-none before:absolute before:inset-0 before:size-full before:rounded-tl-[70px] opacity-70 before:rounded-br-[70px] lg:before:rounded-tl-[100px] lg:before:rounded-br-[100px] before:p-[--border-width] before:content-[""] before:![-webkit-mask-composite:xor] before:![mask-composite:exclude] before:[background-image:--background-radial-gradient] before:[background-size:300%_300%] before:[mask:--mask-linear-gradient] motion-safe:before:animate-shine`}
       ></div>
 
       {children}

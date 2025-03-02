@@ -2,7 +2,7 @@
 // Import necessary components and libraries
 import Navbar from "./components/Navbar";
 import { Window } from "./components/ui/Window";
-
+import { SiTicktick } from "react-icons/si";
 import { FaPencilRuler, FaLaptopCode, FaCode } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { ShinyBorder } from "./components/ui/ShinyBorder";
@@ -87,11 +87,13 @@ export default function Home() {
     },
   ];
 
+  const [loading, setLoading] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [err, setErr] = useState(false);
   const [formData, setFormData] = useState({
-    lastName: "",
-    firstName: "",
+    firstname: "",
+    lastname: "",
     email: "",
-    phone: "",
     message: "",
   });
 
@@ -99,10 +101,34 @@ export default function Home() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Handle form submission logic
+    setLoading(true);
+    setErr(false); // Reset error message on each submission attempt
+    const { firstname, lastname, email, message } = formData;
+    console.log(firstname, lastname, email, message);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST", // Specify the POST method
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ firstname, lastname, email, message }), // Convert data to JSON string
+      });
+      const result = await response.json();
+      console.log(result);
+      if (response.status === 200) {
+        setIsSubmitted(true);
+        setLoading(false);
+        setTimeout(() => setIsSubmitted(false), 3000);
+      } else {
+        setErr(true);
+        setLoading(false);
+      }
+    } catch (error) {
+      setErr(true);
+      setLoading(false);
+    }
   };
 
   // const reviews = [
@@ -223,23 +249,33 @@ export default function Home() {
         </div>
         <div className="absolute bottom-36 md:bottom-40 lg:bottom-28 xl:bottom-40 2xl:bottom-28 blur-2xl lg:blur-3xl rounded-full w-[80%] h-[100px] lg:h-[150px] 2xl:h-[300px] bg-[#206C47] z-0" />
         <Window
-          className=" w-full h-[250px] xl:h-[300px] 2xl:h-[400px] overflow-hidden rounded-[20px] border-0 fade-in"
+          className=" w-full h-[250px] xl:h-[300px] px-8 2xl:h-[400px] overflow-hidden rounded-[20px] border-0 fade-in"
           color={["#A07CFE", "#0099ff", "#0099ff"]}
         >
+          <div className="flex flex-col ">
+            <h1 className="text-4xl text-center md:text-left sm:text-5xl mt-5 md:mt-16 lg:mb-8 lg:text-6xl font-[marcellus]">
+              Welcome to OFZEN
+            </h1>
+            <h1 className="sm:text-[18px] lg:w-[60%] p-4 sm:p-6 md:p-0 lg:text-3xl font-[marcellus] ">
+              Crafting seamless digital experiences through design, development,
+              <br className="visible lg:hidden" />
+              and innovation.
+            </h1>
+          </div>
           <div className="absolute -top-40 lg:-top-96 -left-40 lg:-left-[450px] blur-[80px] lg:blur-[100px] rounded-full w-[500px] lg:w-[1000px] h-[400px] lg:h-[800px] bg-[#71ebd6] opacity-10" />
         </Window>
+
         <img
           src="/window.svg"
           alt=""
           className="z-10 w-[50%] md:w-[40%] h-auto -bottom-8 sm:-bottom-14 lg:-bottom-20 xl:-bottom-28 right-5 md:right-5 absolute fade-in"
         />
       </div>
-      {/* <div className="absolute -left-44 xl:-left-[700px] bottom-36 md:bottom-40 lg:bottom-28 xl:bottom-40 2xl:bottom-28 blur-2xl lg:blur-3xl rounded-full w-[70%] h-[50%] bg-[#206C47] opacity-15 z-0" /> */}
 
       {/* Service cards */}
       <div
         id="expertises"
-        className="z-20 flex flex-col font-[marcellus] justify-center items-center mt-16 mx-10 w-[90%] md:w-[70%] md:mt-28"
+        className="z-20 scroll-mt-24 flex flex-col font-[marcellus] justify-center items-center mt-16 mx-10 w-[90%] md:w-[70%] md:mt-28"
       >
         <h1 className="text-3xl md:text-6xl font-[marcellus] font-medium bg-gradient-to-br from-white to-[#4d4d4d8a] bg-clip-text text-transparent">
           Expertises
@@ -257,14 +293,14 @@ export default function Home() {
               >
                 <div
                   index={index}
-                  className={`rounded-${service.corner[0]}-[100px] w-full h-full transition-all duration-300`}
+                  className={` w-full h-full transition-all duration-300`}
                 >
                   <div className="p-2 md:p-10 text-center text-white">
                     <div className="flex justify-center">{service.icon}</div>
-                    <h3 className="text-xs mt-2 md:text-xl font-semibold uppercase">
+                    <h3 className="text-[10px] sm:text-xs mt-2 md:text-xl font-semibold uppercase">
                       {service.title}
                     </h3>
-                    <p className="text-xs mt-3 text-gray-400">
+                    <p className="text-[10px] sm:text-xs mt-3 text-gray-400">
                       {service.description}
                     </p>
                   </div>
@@ -278,12 +314,12 @@ export default function Home() {
       {/* Creation cards */}
       <div
         id="creations"
-        className="z-20 flex flex-col font-[marcellus] justify-center items-center mt-10 mx-10 w-[90%] md:w-[70%] md:mt-20"
+        className="z-20 scroll-mt-24 flex flex-col font-[marcellus] justify-center items-center mt-10 mx-10 w-[90%] md:w-[70%] md:mt-20"
       >
         <h1 className="text-3xl md:text-6xl font-[marcellus] font-medium bg-gradient-to-br from-white to-[#4d4d4d8a] bg-clip-text text-transparent">
           Creations
         </h1>
-        <div className="grid grid-cols-2 xl:grid-cols-3 justify-center  bg-gradient-to-br from-[#ffffff27] to-[#00000018] mt-5 gap-6 p-3 md:p-10 border-2 border-gray-400 rounded-2xl">
+        <div className="grid grid-cols-2 xl:grid-cols-3 justify-center  bg-gradient-to-br from-[#ffffff27] to-[#00000018] mt-5 gap-6 p-3 lg:p-10 border-2 border-gray-400 rounded-2xl">
           {creations.map((creation, index) => (
             <ShinyBorderDash
               className="relative overflow-hidden border-0"
@@ -322,7 +358,7 @@ export default function Home() {
       {/* Meet our Squad */}
       <div
         id="squad"
-        className="flex flex-col px-10 md:py-32 py-24 w-full lg:w-[70%] relative"
+        className="flex scroll-mt-24 flex-col px-10 md:py-32 my-14 w-full lg:w-[70%] relative"
       >
         <div className="absolute -top-40 lg:-top-96 -left-80 lg:-left-[900px] blur-[80px] lg:blur-[100px] rounded-full w-[500px] lg:w-[1000px] h-[400px] lg:h-[800px] bg-[#71ebd6] opacity-10" />
         <img
@@ -333,21 +369,21 @@ export default function Home() {
         <div className="flex w-10 h-10 lg:w-20 lg:h-20 right-5 lg:-right-24 -rotate-45 lg:top-24 border-2 absolute opacity-45 border-purple-800" />
         <div className="flex w-10 h-10 lg:w-20 lg:h-20 left-1 lg:-left-10 -rotate-45 bottom-28 border-2 absolute opacity-45 border-blue-800" />
 
-        <div className="hidden lg:block">
+        <div className="hidden xl:block">
           <div className="flex gap-4 justify-between">
             <Card
               name={"Pavan G"}
               img={"/img/pavan_img.png"}
               role={"Full Stack Devloper"}
             />
-            <div className="lg:flex hidden flex-col text-center justify-center">
+            <div className="lg:flex hidden flex-col text-center items-center justify-center">
               <h1 className="text-3xl md:text-5xl mb-5 font-[marcellus] font-medium bg-gradient-to-br from-white to-[#4d4d4d8a] bg-clip-text text-transparent">
                 Meet our Squad
               </h1>
               <img
                 src="/logo.svg"
                 alt=""
-                className="bg-gradient-to-br max-w-[90%] from-white to-[#4d4d4d8a] bg-clip-text text-transparent"
+                className="bg-gradient-to-br max-w-[80%] from-white to-[#4d4d4d8a] bg-clip-text text-transparent"
               />
             </div>
             <Card
@@ -374,18 +410,14 @@ export default function Home() {
             />
           </div>
         </div>
-        <div className="block lg:hidden">
+
+        <div className="block xl:hidden">
           <div className="flex items-center flex-col justify-center">
-            <h1 className="text-3xl  mb-5 font-serif font-medium bg-gradient-to-br from-white to-[#4d4d4d8a] bg-clip-text text-transparent">
+            <h1 className="text-3xl md:text-6xl font-[marcellus] font-medium bg-gradient-to-br from-white to-[#4d4d4d8a] bg-clip-text text-transparent">
               Meet our Squad
             </h1>
-            <img
-              src="/logo.svg"
-              alt=""
-              className=" w-1/2 bg-gradient-to-br from-white to-[#4d4d4d8a] bg-clip-text text-transparent"
-            />
           </div>
-          <div className="grid gap-2 mt-10 place-items-center grid-cols-2">
+          <div className="grid grid-cols-2 gap-3 mt-10 place-items-center ">
             <Card
               name={"Pavan G"}
               img={"/img/pavan_img.png"}
@@ -407,9 +439,9 @@ export default function Home() {
               role={"Ui/ux Designer"}
             />
           </div>
-          <div className="w-full flex items-center mt-2 justify-center">
+          <div className="flex w-full items-center justify-center mt-3">
             <Card
-              className="w-1/2"
+              className=""
               name={"Venkat M"}
               img={"/img/venky_img.png"}
               role={"Front end Devloper "}
@@ -421,12 +453,12 @@ export default function Home() {
       {/* Our Story */}
       <div
         id="ourstory"
-        className="md:w-[70%] pb-20 w-[90%] flex flex-col justify-center items-center"
+        className="md:w-[70%] scroll-mt-24 pb-10 w-[90%] flex flex-col justify-center items-center"
       >
         <h2 className="text-3xl md:text-6xl mb-5 font-[marcellus] font-medium bg-gradient-to-br from-white to-[#4d4d4d8a] bg-clip-text text-transparent">
           Our Story
         </h2>
-        <p className="text-2xl text-justify md:text-left font-[marcellus] leading-relaxed bg-gradient-to-br from-[#b1b1b1] to-[#8a8a8a8a] bg-clip-text text-transparent">
+        <p className="sm:text-2xl text-justify md:text-left font-[marcellus] leading-relaxed bg-gradient-to-br from-[#b1b1b1] to-[#8a8a8a8a] bg-clip-text text-transparent">
           We are a group of five engineering students who came together with a
           shared vision—to build something innovative and impactful. Driven by
           passion and expertise, we founded Ofzen, a startup dedicated to
@@ -437,10 +469,11 @@ export default function Home() {
           a difference. <span className="text-white">🚀</span>
         </p>
       </div>
+
       {/* Let's have a virtual Coffee!  */}
       <div
         id="contactus"
-        className="relative flex overflow-x-clip flex-col items-center justify-center w-full pb-10 text-white p-6"
+        className="relative scroll-mt-24 flex overflow-x-clip flex-col items-center justify-center w-full pb-10 text-white p-6"
       >
         <div className="absolute -top-40 lg:-top-96 -right-72 lg:-right-[800px] blur-[80px] lg:blur-[100px] rounded-full w-[500px] lg:w-[1000px] h-[400px] lg:h-[800px] bg-[#71ebd6] opacity-10" />
 
@@ -452,7 +485,16 @@ export default function Home() {
           Let’s bring your ideas to life. Reach out, & let's create something
           extraordinary together!
         </p>
-
+        {/* Popup Dialog */}
+        {isSubmitted && (
+          <div className="z-10 absolute flex flex-col p-8 justify-center items-center w-fit h-1/3 bg-background border-2 border-gray-700 text-white rounded-lg shadow-lg transition-opacity duration-300">
+            <SiTicktick size={50} className="mb-5" />
+            Submitted!
+            <p className="text-gray-400 text-left mb-6">
+              We contact you as soon as possible.
+            </p>
+          </div>
+        )}
         {/* Form  */}
         <div className="flex flex-col p-8 lg:p-14 font-[marcellus] rounded-2xl w-[90%] lg:w-1/3 border-2 border-gray-700 bg-gradient-to-br from-[#ffffff15] to-[#2929292c]">
           <h2 className="text-2xl lg:text-3xl text-left mb-3">
@@ -461,13 +503,17 @@ export default function Home() {
           <p className="text-gray-400 text-left mb-6">
             Let’s connect our constellations and spark innovation together.
           </p>
-
+          {err && (
+            <p className="text-red-700 text-center text-wrap mt-5">
+              Error submiting the request, please try again.
+            </p>
+          )}
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="flex space-x-4">
               <input
                 type="text"
-                name="lastName"
+                name="lastname"
                 placeholder="Last Name"
                 className="w-1/2 bg-[#9494941c] border-2 border-gray-700 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#70ff4533] text-white placeholder-gray-500"
                 onChange={handleChange}
@@ -475,7 +521,7 @@ export default function Home() {
               />
               <input
                 type="text"
-                name="firstName"
+                name="firstname"
                 placeholder="First Name"
                 className="w-1/2 bg-[#9494941c] border-2 border-gray-700 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#70ff4533] text-white placeholder-gray-500"
                 onChange={handleChange}
@@ -504,9 +550,11 @@ export default function Home() {
             {/* Submit Button */}
             <button
               type="submit"
+              disabled={loading}
               className="w-full bg-[#9494941c] p-3 rounded-lg hover:bg-[#70ff4533] transition text-white font-semibold flex items-center justify-center space-x-2"
             >
-              Submit <span className="ml-2">🚀</span>
+              {loading ? "Loading..." : "Submit"}{" "}
+              <span className="ml-2">🚀</span>
             </button>
           </form>
         </div>
@@ -621,13 +669,14 @@ export default function Home() {
         </div>
 
         {/* Social Media Links */}
-        <div className="flex w-full items-center mt-6 justify-center space-x-4">
+        <div className="flex flex-wrap gap-3 w-full items-center mt-6 justify-center">
           <Link
             href="mailto:ofzenenterprise@gmail.com"
             className="flex items-center bg-[#9494941c] border-2 border-gray-700 p-3 rounded-lg hover:bg-[#9494943b]"
           >
             ✉️ <span className="ml-2">ofzenenterprise@gmail.com</span>
           </Link>
+          <br />{" "}
           <a
             href="#"
             className="bg-[#9494941c] border-2 border-gray-700 p-3 rounded-lg hover:bg-[#9494943b] hover:text-black"
