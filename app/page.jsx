@@ -213,7 +213,7 @@ export default function Home() {
 
   return (
     <div className="relative w-full flex flex-col items-center ">
-      <div className="absolute -top-40 lg:-top-96 -left-80 lg:-left-[900px] blur-[80px] lg:blur-[400px] rounded-full w-[500px] lg:w-[1000px] h-[400px] lg:h-[800px] bg-[#31ffdd] opacity-15" />
+      <div className="absolute -top-40 lg:-top-96 -left-80 lg:-left-[700px] blur-[100px] lg:blur-[400px] rounded-full w-[500px] lg:w-[1000px] h-[400px] lg:h-[800px] bg-[#31ffdd] opacity-25" />
 
       {/* Background image */}
       <img
@@ -259,10 +259,10 @@ export default function Home() {
           color={["#A07CFE", "#0099ff", "#0099ff"]}
         >
           <div className="flex flex-col ">
-            <h1 className="text-4xl text-center md:text-left sm:text-5xl mt-5 md:mt-16 lg:mb-8 lg:text-6xl font-[marcellus]">
+            <h1 className="text-4xl text-center md:text-left sm:text-5xl mt-5 md:mt-16 lg:mb-4 xl:mb-8 xl:text-6xl font-[marcellus]">
               Welcome to OFZEN
             </h1>
-            <h1 className="sm:text-[18px] lg:w-[60%] p-4 sm:p-6 md:p-0 lg:text-3xl font-[marcellus] ">
+            <h1 className="sm:text-[18px] lg:w-[50%] xl:w-[60%] p-4 sm:p-6 md:p-0 lg:text-2xl xl:text-3xl font-[marcellus] ">
               Crafting seamless digital experiences through design, development,
               <br className="visible lg:hidden" />
               and innovation.
@@ -366,7 +366,7 @@ export default function Home() {
         id="squad"
         className="flex scroll-mt-16 flex-col px-10 md:py-32 my-14 w-full lg:w-[70%] relative"
       >
-        <div className="absolute -top-40 lg:-top-96 -left-80 lg:-left-[900px] blur-[80px] lg:blur-[100px] rounded-full w-[500px] lg:w-[1000px] h-[400px] lg:h-[800px] bg-[#71ebd6] opacity-10" />
+        <div className="absolute -top-40 lg:-top-96 -left-80 lg:-left-[900px] blur-[80px] lg:blur-[100px] rounded-full w-[500px] lg:w-[1000px] h-[400px] lg:h-[800px] bg-[#0e947e94] opacity-10" />
         <img
           src="/light.svg"
           alt=""
@@ -380,7 +380,7 @@ export default function Home() {
             <Card
               name={"Pavan G"}
               img={"/img/pavan_img.png"}
-              role={"Full Stack Devloper"}
+              role={"Full Stack Developer"}
             />
             <div className="lg:flex hidden flex-col text-center items-center justify-center">
               <h1 className="text-3xl md:text-5xl mb-5 font-[marcellus] font-medium bg-gradient-to-br from-white to-[#4d4d4d8a] bg-clip-text text-transparent">
@@ -402,7 +402,7 @@ export default function Home() {
             <Card
               name={"Sunil G"}
               img={"/img/sunil_img.png"}
-              role={"Back End Devloper"}
+              role={"Back End Developer"}
             />
             <Card
               name={"Charan Tej"}
@@ -412,7 +412,7 @@ export default function Home() {
             <Card
               name={"Venkat M"}
               img={"/img/venky_img.png"}
-              role={"Front end Devloper "}
+              role={"Front end Developer "}
             />
           </div>
         </div>
@@ -427,7 +427,7 @@ export default function Home() {
             <Card
               name={"Pavan G"}
               img={"/img/pavan_img.png"}
-              role={"Full Stack Devloper"}
+              role={"Full Stack Developer"}
             />
             <Card
               name={"Sanddep J"}
@@ -437,7 +437,7 @@ export default function Home() {
             <Card
               name={"Sunil G"}
               img={"/img/sunil_img.png"}
-              role={"Back End Devloper"}
+              role={"Back End Developer"}
             />
             <Card
               name={"Charan Tej"}
@@ -450,7 +450,7 @@ export default function Home() {
               className=""
               name={"Venkat M"}
               img={"/img/venky_img.png"}
-              role={"Front end Devloper "}
+              role={"Front end Developer "}
             />
           </div>
         </div>
@@ -520,6 +520,7 @@ export default function Home() {
               <input
                 type="text"
                 name="lastname"
+                value={formData.lastname}
                 placeholder="Last Name"
                 className="w-1/2 bg-[#9494941c] border-2 border-gray-700 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#70ff4533] text-white placeholder-gray-500"
                 onChange={handleChange}
@@ -528,6 +529,7 @@ export default function Home() {
               <input
                 type="text"
                 name="firstname"
+                value={formData.firstname}
                 placeholder="First Name"
                 className="w-1/2 bg-[#9494941c] border-2 border-gray-700 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#70ff4533] text-white placeholder-gray-500"
                 onChange={handleChange}
@@ -538,6 +540,7 @@ export default function Home() {
             <input
               type="email"
               name="email"
+              value={formData.email}
               placeholder="Email"
               className="w-full bg-[#9494941c] border-2 border-gray-700 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#70ff4533] text-white placeholder-gray-500"
               onChange={handleChange}
@@ -548,6 +551,7 @@ export default function Home() {
               name="message"
               placeholder="Message"
               rows="4"
+              value={formData.message}
               className="w-full bg-[#9494941c] border-2 border-gray-700 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#70ff4533] text-white placeholder-gray-500"
               onChange={handleChange}
               required
@@ -689,24 +693,24 @@ export default function Home() {
             ✉️ <span className="ml-2">ofzenenterprise@gmail.com</span>
           </Link>
           <br />{" "}
-          <a
-            href="#"
+          {/* <Link
+            href=""
             className="bg-[#9494941c] border-2 border-gray-700 p-3 rounded-lg hover:text-black"
           >
             <FaXTwitter />
-          </a>
-          <a
-            href="#"
+          </Link> */}
+          <Link
+            href="https://www.linkedin.com/company/ofzen"
             className="bg-[#9494941c] border-2 border-gray-700 p-3 rounded-lg hover:text-blue-500"
           >
             <FaLinkedinIn />
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            href="https://www.instagram.com/ofzen.dev"
             className="bg-[#9494941c] border-2 border-gray-700 p-3 rounded-lg hover:text-pink-700"
           >
             <FaInstagram />
-          </a>
+          </Link>
         </div>
       </footer>
     </div>
