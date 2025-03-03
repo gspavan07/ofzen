@@ -393,7 +393,7 @@ export default function Home() {
               />
             </div>
             <Card
-              name={"Sanddep J"}
+              name={"Sandeep J"}
               img={"/img/sandeep_img.png"}
               role={"Digital Marketing "}
             />
