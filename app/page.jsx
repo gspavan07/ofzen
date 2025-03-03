@@ -58,7 +58,7 @@ export default function Home() {
       borderColor: ["#FF00F5"],
     },
     {
-      img: "creation5",
+      img: "creation_krissaco",
       title: "Krissaco",
       description:
         "Crafted a modern and aesthetically pleasing website for Krissaco, emphasizing user experience and brand identity.",
