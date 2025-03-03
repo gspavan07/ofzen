@@ -44,46 +44,46 @@ export default function Home() {
   // Creations array containing details of each creation
   const creations = [
     {
-      img: "creation1",
-      title: "UI/UX",
+      img: "creation_agri",
+      title: "AgriConnect",
       description:
-        "Seamless experiences, where design meets functionality, enhancing user engagement.",
+        "Designed a user-friendly mobile application for the agricultural sector, connecting farmers with buyers, suppliers, and resources.",
       borderColor: ["#0FEFFD"],
     },
     {
-      img: "creation2",
-      title: "Web Designing",
+      img: "creation_doct",
+      title: "MediConnect",
       description:
-        "Crafting visually stunning, user-friendly designs that elevate brand identity & engagement.",
+        "Designed a modern and user-friendly mobile app interface for scheduling doctor appointments. The UI focuses on simplicity, accessibility, and smooth navigation.",
       borderColor: ["#FF00F5"],
-    },
-    {
-      img: "creation1",
-      title: "Web Development",
-      description:
-        "Robust and scalable web solutions, blending performance, innovation, & seamless functionality.",
-      borderColor: ["#A07CFE"],
-    },
-    {
-      img: "creation3",
-      title: "UI/UX",
-      description:
-        "Seamless experiences, where design meets functionality, enhancing user engagement.",
-      borderColor: ["#A07CFE"],
-    },
-    {
-      img: "creation4",
-      title: "Web Designing",
-      description:
-        "Crafting visually stunning, user-friendly designs that elevate brand identity & engagement.",
-      borderColor: ["#0FEFFD"],
     },
     {
       img: "creation5",
-      title: "Web Development",
+      title: "Krissaco",
       description:
-        "Robust and scalable web solutions, blending performance, innovation, & seamless functionality.",
+        "Crafted a modern and aesthetically pleasing website for Krissaco, emphasizing user experience and brand identity.",
       borderColor: ["#FF00F5"],
+    },
+    {
+      img: "creation_giga",
+      title: "MS Giga Power",
+      description:
+        "Developed a robust, high-performance website for MS Giga Power Company. The site showcases the company's expertise in the energy sector while ensuring a smooth user experience.",
+      borderColor: ["#A07CFE"],
+    },
+    {
+      img: "creation_coachon",
+      title: "CoachOn",
+      description:
+        "Designed and developed a seamless online platform that enables students to find and connect with professional coaches in various fields. ",
+      borderColor: ["#A07CFE"],
+    },
+    {
+      img: "creation_examcell",
+      title: "Exam Cell",
+      description:
+        "Designed and developed a digital platform to automate exam cell operations for colleges.",
+      borderColor: ["#0FEFFD"],
     },
   ];
 
@@ -205,11 +205,11 @@ export default function Home() {
 
   // const firstRow = reviews.slice(0, reviews.length / 2);
   // const secondRow = reviews.slice(reviews.length / 2);
-  const [openIndex, setOpenIndex] = useState(null);
+  // const [openIndex, setOpenIndex] = useState(null);
 
-  const toggleFAQ = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
+  // const toggleFAQ = (index) => {
+  //   setOpenIndex(openIndex === index ? null : index);
+  // };
 
   return (
     <div className="relative w-full flex flex-col items-center ">
@@ -626,7 +626,7 @@ export default function Home() {
               <h2 className="text-xl font-semibold">OFZEN</h2>
             </div>
             <p className="text-gray-400 mt-2">
-              We grow your business with a <br /> personal AI manager.
+              We grow your business <br /> digitally.
             </p>
             <div className="flex items-center mt-4"></div>
           </div>
@@ -636,31 +636,31 @@ export default function Home() {
               <h3 className="text-gray-300 font-semibold">COMPANY</h3>
               <Link
                 href="#home"
-                className="text-base sm:text-lg text-transparent bg-clip-text hover:underline bg-gradient-to-t to-white via-white from-[#4d4d4d8a] font-[marcellus] py-1"
+                className="text-base sm:text-lg text-gray-400 bg-clip-text hover:text-transparent bg-gradient-to-t to-white via-white from-[#4d4d4d8a] font-[marcellus]"
               >
                 Home
               </Link>
               <Link
                 href="#expertises"
-                className="text-base sm:text-lg text-transparent bg-clip-text hover:underline bg-gradient-to-t to-white via-white from-[#4d4d4d8a] font-[marcellus] py-1"
+                className="text-base sm:text-lg text-gray-400 bg-clip-text hover:text-transparent bg-gradient-to-t to-white via-white from-[#4d4d4d8a] font-[marcellus]"
               >
                 Expertises
               </Link>
               <Link
                 href="#creations"
-                className="text-base sm:text-lg text-transparent bg-clip-text hover:underline bg-gradient-to-t to-white via-white from-[#4d4d4d8a] font-[marcellus] py-1"
+                className="text-base sm:text-lg text-gray-400 bg-clip-text hover:text-transparent bg-gradient-to-t to-white via-white from-[#4d4d4d8a] font-[marcellus]"
               >
                 Creations
               </Link>
               <Link
                 href="#squad"
-                className="text-base sm:text-lg text-transparent bg-clip-text hover:underline bg-gradient-to-t to-white via-white from-[#4d4d4d8a] font-[marcellus] py-1"
+                className="text-base sm:text-lg text-gray-400 bg-clip-text hover:text-transparent bg-gradient-to-t to-white via-white from-[#4d4d4d8a] font-[marcellus]"
               >
                 Meet our squad
               </Link>
               <Link
                 href="#contactus"
-                className="text-base sm:text-lg text-transparent bg-clip-text hover:underline bg-gradient-to-t to-white via-white from-[#4d4d4d8a] font-[marcellus] py-1"
+                className="text-base sm:text-lg text-gray-400 bg-clip-text hover:text-transparent bg-gradient-to-t to-white via-white from-[#4d4d4d8a] font-[marcellus]"
               >
                 Contact us
               </Link>
@@ -688,9 +688,9 @@ export default function Home() {
         <div className="flex flex-wrap gap-3 w-full items-center mt-6 justify-center">
           <Link
             href="mailto:ofzenenterprise@gmail.com"
-            className="flex items-center bg-[#9494941c] border-2 border-gray-700 p-3 rounded-lg hover:bg-[#9494943b]"
+            className="flex items-center bg-[#9494941c] border-2 border-gray-700 p-3 rounded-lg  hover:text-gray-400"
           >
-            ✉️ <span className="ml-2">ofzenenterprise@gmail.com</span>
+            ✉️ ofzenenterprise@gmail.com
           </Link>
           <br />{" "}
           {/* <Link
