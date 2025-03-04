@@ -690,7 +690,7 @@ export default function Home() {
             href="mailto:ofzenenterprise@gmail.com"
             className="flex items-center bg-[#9494941c] border-2 border-gray-700 p-3 rounded-lg  hover:text-gray-400"
           >
-            ✉️ ofzenenterprise@gmail.com
+            ✉️ info@ofzen.in
           </Link>
           <br />{" "}
           {/* <Link

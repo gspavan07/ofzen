@@ -1,4 +1,4 @@
-import { Schema, model} from "mongoose";
+import { Schema, model } from "mongoose";
 
 const contactSchema = new Schema({
   firstname: {
@@ -6,15 +6,15 @@ const contactSchema = new Schema({
     required: true,
     trim: true,
   },
-  firstname: {
+  lastname: {
     type: String,
     required: true,
     trim: true,
   },
   email: {
-      type: String,
-      required: true,
-      trim: true,
+    type: String,
+    required: true,
+    trim: true,
   },
   message: {
     type: String,
