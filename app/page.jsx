@@ -430,7 +430,7 @@ export default function Home() {
               role={"Full Stack Developer"}
             />
             <Card
-              name={"Sanddep J"}
+              name={"Sandeep J"}
               img={"/img/sandeep_img.png"}
               role={"Digital Marketing "}
             />
@@ -690,7 +690,7 @@ export default function Home() {
             href="mailto:ofzenenterprise@gmail.com"
             className="flex items-center bg-[#9494941c] border-2 border-gray-700 p-3 rounded-lg  hover:text-gray-400"
           >
-            ✉️ info@ofzen.in
+            ✉️ ofzenenterprise@gmail.com
           </Link>
           <br />{" "}
           {/* <Link
