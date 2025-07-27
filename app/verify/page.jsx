@@ -1,11 +1,14 @@
 "use client";
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { SiTicktick } from 'react-icons/si';
 import { FaTimes } from 'react-icons/fa';
 import QRCode from 'qrcode';
+import Navbar from '../components/Navbar';
+import Link from 'next/link';
+import { FaLinkedinIn, FaInstagram } from 'react-icons/fa6';
 
-export default function VerifyPage() {
+function VerifyContent() {
   const [certificate, setCertificate] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -53,6 +56,35 @@ export default function VerifyPage() {
     }
   };
 
+  const [pdfUrl, setPdfUrl] = useState("");
+
+  const viewCertificate = async () => {
+    setShowCertificate(true);
+    setPdfUrl("");
+
+    try {
+      const response = await fetch("/api/generate-certificate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: certificate.name,
+          role: certificate.role,
+          certId,
+          issueDate: certificate.issueDate,
+          format: "pdf",
+        }),
+      });
+
+      if (response.ok) {
+        const blob = await response.blob();
+        const url = URL.createObjectURL(blob);
+        setPdfUrl(url);
+      }
+    } catch (err) {
+      console.error("Error generating certificate:", err);
+    }
+  };
+
   const downloadPDF = async () => {
     setDownloading(true);
     try {
@@ -62,18 +94,22 @@ export default function VerifyPage() {
         body: JSON.stringify({
           name: certificate.name,
           role: certificate.role,
-          certId: certId,
+          certId,
           issueDate: certificate.issueDate,
-          qrCodeUrl: qrCodeUrl
+          format: 'pdf'
         }),
       });
       
       if (response.ok) {
-        const data = await response.json();
-        const link = document.createElement('a');
-        link.href = data.pdfUrl;
-        link.download = data.filename;
-        link.click();
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `ofzen-cert-${certId}.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
       }
     } catch (error) {
       console.error('Download failed:', error);
@@ -90,7 +126,8 @@ export default function VerifyPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white p-4">
+    <div className="min-h-screen bg-black text-white">
+      <Navbar />
       {certificate ? (
         <>
           <div className="flex items-center justify-center min-h-screen">
@@ -104,7 +141,7 @@ export default function VerifyPage() {
               </div>
               <div className="mt-6 space-y-3">
                 <button 
-                  onClick={() => setShowCertificate(true)}
+                  onClick={viewCertificate}
                   className="w-full bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg transition"
                 >
                   View Certificate
@@ -141,112 +178,17 @@ export default function VerifyPage() {
                   </div>
                 </div>
                 <div className="p-4">
-                  <iframe
-                    srcDoc={`<!DOCTYPE html>
-<html>
-<head>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-    .bg {
-      position: absolute;
-      width: 1700px;
-      overflow: hidden;
-    }
-    .certificate {
-      background: transparent;
-      padding: 60px;
-      height: 88vh;
-      width: 100%;
-      text-align: center;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-    .logo {
-      width: 200px;
-      height: auto;
-      position: absolute;
-      top: 60px;
-      right: 80px;
-    }
-    .title {
-      text-transform: uppercase;
-      color: #34495e;
-      font-size: 50px;
-      margin: 0;
-      font-weight: bold;
-    }
-    .subtitle {
-      text-transform: uppercase;
-      color: #000;
-      font-weight: bolder;
-      font-size: 40px;
-      margin: 10px 0 20px 0;
-    }
-    .name {
-      font-size: 42px;
-      font-weight: bold;
-      margin: 10px 0;
-    }
-    .desc {
-      font-size: 18px;
-      color: #34495e;
-      width: 65%;
-      text-align: center;
-      margin: 30px 0;
-    }
-    .footer {
-      position: absolute;
-      bottom: 20px;
-      color: #7f8c8d;
-      font-size: 16px;
-    }
-    .cert-id {
-      position: absolute;
-      bottom: 20px;
-      right: 30px;
-      color: #bdc3c7;
-      font-size: 14px;
-    }
-    .qr-code {
-      position: absolute;
-      bottom: 20px;
-      left: 30px;
-      width: 200px;
-      height: 200px;
-    }
-  </style>
-</head>
-<body>
-  <img class="bg" src="/Ofzen-CERT.png" alt="">
-  <div class="certificate">
-    <img class="logo" src="/logo.png" alt="">
-    <div class="title">Internship Completion</div>
-    <p class="subtitle">Certificate</p>
-    <p style="font-size: 20px; color: #34495e; margin: 30px 0;">This is to certify that</p>
-    <div class="name">${certificate.name}</div>
-    <p class="desc">Has successfully completed an internship as ${certificate.role}, exhibiting strong technical proficiency and a keen understanding of modern web technologies. Their contributions reflected professionalism, problem-solving ability, and attention to detail.</p>
-    <div class="footer">
-      <p><strong>Issue Date:</strong> ${certificate.issueDate}</p>
-      <p style="margin-top: 10px; font-style: italic;">"Excellence in Digital Innovation"</p>
-    </div>
-    ${qrCodeUrl ? `<img src="${qrCodeUrl}" class="qr-code" alt="QR Code" />` : ""}
-    <div class="cert-id">Certificate ID: ${certId}</div>
-  </div>
-</body>
-</html>`}
-                    className="w-full h-96 border-0"
-                  />
+                  {pdfUrl ? (
+                    <iframe
+                      src={pdfUrl}
+                      className="w-full h-[80vh] border border-gray-700 rounded"
+                      title="Certificate PDF"
+                    />
+                  ) : (
+                    <div className="w-full h-96 flex items-center justify-center border border-gray-700 rounded">
+                      <p className="text-gray-400">Generating certificate...</p>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -271,6 +213,55 @@ export default function VerifyPage() {
           </div>
         </div>
       )}
+      
+      <footer className="relative overflow-hidden rounded-t-[70px] border-t-2 w-full text-white py-10 px-8 md:px-16 lg:px-24">
+        <div className="flex w-20 opacity-25 h-20 top-10 -left-10 justify-center items-center blur-2xl absolute rounded-full bg-purple-800" />
+        <div className="flex w-20 opacity-25 h-20 right-20 -bottom-10 justify-center items-center blur-2xl absolute rounded-full bg-blue-800" />
+
+        <div className="max-w-7xl mx-auto flex justify-between gap-8">
+          <div>
+            <div className="flex flex-col items-start">
+              <img src="./icon.svg" alt="" className="w-16" />
+              <h2 className="text-xl font-semibold">OFZEN</h2>
+            </div>
+            <p className="text-gray-400 mt-2">
+              We grow your business <br /> digitally.
+            </p>
+          </div>
+          <div className="flex gap-8">
+            <div className="text-right flex-col flex">
+              <h3 className="text-gray-300 font-semibold">COMPANY</h3>
+              <Link href="/" className="text-base sm:text-lg text-gray-400 bg-clip-text hover:text-transparent bg-gradient-to-t to-white via-white from-[#4d4d4d8a] font-[marcellus]">
+                Home
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-wrap gap-3 w-full items-center mt-6 justify-center">
+          <Link href="mailto:ofzenenterprise@gmail.com" className="flex items-center bg-[#9494941c] border-2 border-gray-700 p-3 rounded-lg  hover:text-gray-400">
+            ✉️ ofzenenterprise@gmail.com
+          </Link>
+          <Link href="https://www.linkedin.com/company/ofzen" className="bg-[#9494941c] border-2 border-gray-700 p-3 rounded-lg hover:text-blue-500">
+            <FaLinkedinIn />
+          </Link>
+          <Link href="https://www.instagram.com/ofzen.dev" className="bg-[#9494941c] border-2 border-gray-700 p-3 rounded-lg hover:text-pink-700">
+            <FaInstagram />
+          </Link>
+        </div>
+      </footer>
     </div>
+  );
+}
+
+export default function VerifyPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-white text-xl">Loading...</div>
+      </div>
+    }>
+      <VerifyContent />
+    </Suspense>
   );
 }
